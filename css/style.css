@@ -723,7 +723,7 @@ body.is-block {
 }
 
 .header.is-active {
-    background-color: #333333;
+    background-color: #404040;
 }
 
 .header__container {
@@ -751,6 +751,8 @@ body.is-block {
     padding-right: 15px;
     transition: background 0.2s ease;
     border-radius: 5px 0 0 5px;
+    border: 1px solid #595959;
+    border-color: transparent;
 }
 
 .header .burger__item {
@@ -783,20 +785,27 @@ body.is-block {
     transition: 0.2s ease;
 }
 
-.header .burger.is-active .burger__item {
+.header .burger.is-clicked .burger__item {
     transform: rotate(-45deg);
     width: 24px;
 }
 
-.header .burger.is-active .burger__item::before {
+.header .burger.is-clicked .burger__item::before {
     transform: rotate(-90deg);
     top: 0;
     opacity: 0;
 }
 
-.header .burger.is-active .burger__item::after {
+.header .burger.is-clicked .burger__item::after {
     transform: rotate(90deg);
     bottom: 0;
+}
+
+.header .burger.is-active {
+    background-color: #404040;
+    border-color: #595959;
+    border-right-color: transparent;
+    border-radius: 5px 0 0 5px;
 }
 
 .header .navigation {
@@ -1178,8 +1187,8 @@ body.is-block {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border: 1px solid #595959;
     background-color: #404040;
 }
@@ -1188,6 +1197,8 @@ body.is-block {
     counter-increment: steps;
     content: counter(steps);
     font-size: 12px;
+    line-height: 12px;
+    text-align: center;
 }
 
 .creators__image {
@@ -1205,6 +1216,7 @@ body.is-block {
 
 .creators__username {
     font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .creators__text {
@@ -1273,7 +1285,7 @@ body.is-block {
     }
 
     .creators__counter::after {
-        font-size: 20px;
+        font-size: 16px;
     }
 
     .creators__image {

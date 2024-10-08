@@ -8,43 +8,35 @@ document.addEventListener('DOMContentLoaded', () => {
 	const creatorsButton = document.querySelector('.creators__button');
 	const creatorsItem = document.querySelectorAll('.creators__item');
 
-	/* Header On Scroll */
-	window.onscroll = () => {
+	/* Header On Scroll And Load */
+	const scrollLoad = () => {
 		let scrollY = window.scrollY;
-
-		if (scrollY > 0) {
+		if (scrollY >= 1) {
 			if (window.innerWidth >= 768) {
 				header.classList.add('is-active');
 			}
-			burger.style.background = '#404040';
-			burger.style.border = '1px solid #595959';
-			burger.style.borderRight = '0';
+			burger.classList.add('is-active');
 		} else {
-			if (window.innerWidth >= 768) {
-				header.classList.remove('is-active');
-			}
-			burger.style.background = 'transparent';
-			burger.style.borderRadius = '';
-			burger.style.border = '0';
+			header.classList.remove('is-active');
+			burger.classList.remove('is-active');
 		}
+	};
+	window.onscroll = () => {
+		scrollLoad();
+	};
+	window.onload = () => {
+		scrollLoad();
 	};
 
 	/* Burger On Click */
 	burger.addEventListener('click', (element) => {
-		element.currentTarget.classList.toggle('is-active');
-		/* Navigation Is Active*/
+		element.currentTarget.classList.toggle('is-clicked');
 		navigation.classList.toggle('is-active');
-		if (navigation.classList.contains('is-active')) {
-			burger.style.background = 'transparent';
-			burger.style.borderRadius = '';
-			burger.style.border = '0';
-		} else if (navigation && window.scrollY > 0) {
-			burger.style.background = '#404040';
-			burger.style.border = '1px solid #595959';
-			burger.style.borderRight = '0';
+		burger.classList.toggle('is-active');
+		if (navigation && window.scrollY < 1) {
+			burger.classList.remove('is-active');
 		}
-		/* Body Overflow Hidden */
-		body[0].classList.toggle('is-block');
+		body[0].classList.toggle('is-block'); // body block
 	});
 
 	/* Button On Click */
@@ -63,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					return element.classList.remove('is-hidden');
 				}
 			});
+			if (count1 === item.length || count2 === item.length) {
+				button.style.display = 'none';
+			}
 		});
 	};
-
-	/* Collection On Button Click */
-	clickOnButton(collectionButton, collectionItem);
-	/* Creators On Button Click */
-	clickOnButton(creatorsButton, creatorsItem);
+	clickOnButton(collectionButton, collectionItem); // collection on button click
+	clickOnButton(creatorsButton, creatorsItem); //  creators on button click
 });
