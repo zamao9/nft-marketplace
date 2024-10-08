@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	const burger = document.querySelector('.burger');
 	const navigation = document.querySelector('.navigation');
 	const body = document.getElementsByTagName('body');
+	const collectionButton = document.querySelector('.collection__button');
+	const collectionItem = document.querySelectorAll('.collection__item');
+	const creatorsButton = document.querySelector('.creators__button');
+	const creatorsItem = document.querySelectorAll('.creators__item');
 
 	/* Header On Scroll */
 	window.onscroll = () => {
@@ -42,4 +46,28 @@ document.addEventListener('DOMContentLoaded', () => {
 		/* Body Overflow Hidden */
 		body[0].classList.toggle('is-block');
 	});
+
+	/* Button On Click */
+	const clickOnButton = (button, item) => {
+		let count1 = 4;
+		let count2 = 1;
+
+		button.addEventListener('click', () => {
+			count1 = count1 + 4;
+			count2 = count2 + 1;
+
+			item.forEach((element, index) => {
+				if (item.length > 4 && index < count1) {
+					return element.classList.remove('is-hidden');
+				} else if (item.length < 4 && index < count2) {
+					return element.classList.remove('is-hidden');
+				}
+			});
+		});
+	};
+
+	/* Collection On Button Click */
+	clickOnButton(collectionButton, collectionItem);
+	/* Creators On Button Click */
+	clickOnButton(creatorsButton, creatorsItem);
 });
