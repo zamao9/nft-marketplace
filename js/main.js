@@ -52,10 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (item.length > 4 && index < count1) {
 					return element.classList.remove('is-hidden');
 				} else if (item.length < 4 && index < count2) {
+					if (window.innerWidth < 768) {
+						return element.classList.remove('is-hidden');
+					}
+					count2 = count2 + 2;
 					return element.classList.remove('is-hidden');
 				}
 			});
-			if (count1 === item.length || count2 === item.length) {
+			if (count1 === item.length || count2 >= item.length) {
 				button.style.display = 'none';
 			}
 		});
